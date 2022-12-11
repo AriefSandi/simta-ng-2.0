@@ -39,7 +39,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link  collapsedgi" href="/dashboard">
+        <a class="nav-link  collapse" href="/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
