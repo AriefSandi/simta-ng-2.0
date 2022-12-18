@@ -1,38 +1,52 @@
 @extends('admin.ds')
 
+@section('pagetitle')
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+@endsection
+
 @section('profile')
-    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+  <li class="nav-item dropdown pe-3">
+    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+      <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+    </a><!-- End Profile Iamge Icon -->
 
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+      <li class="dropdown-header">
+        <h6>{{ Auth::user()->name }}</h6>
+      </li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li>
+        <x-dropdown-link :href="route('profile.edit')">
+          {{ __('Profile') }}
+        </x-dropdown-link>
+      </li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+      <li>
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <x-dropdown-link :href="route('logout')"
+            onclick="event.preventDefault();
+            this.closest('form').submit();">
+            {{ __('Log Out') }}
+          </x-dropdown-link>
+        </form>
+      </li>
 
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
+    </ul><!-- End Profile Dropdown Items -->
+  </li><!-- End Profile Nav -->
 @endsection
 
 @section('sidebar')
@@ -50,8 +64,75 @@
           <span>Verifikasi Bebas Lab</span>
         </a>
       </li><!-- End Register Page Nav -->
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/insertmahasiswa">
+              <i class="bi bi-circle"></i><span>Form Tambah Mahasiswa</span>
+            </a>
+          </li>
+          <li>
+            <a href="/insertdokumen">
+              <i class="bi bi-circle"></i><span>Tambah Bebas Lab</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav --> --}}
 
      
     </ul>
 @endsection
 
+@section('main')
+    <div class="col-lg-4 col-lg-4">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Mahasiswa <span>| Total</span></h5>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                <div class="ps-3">
+                    <h6>1244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Total Mahasiswa -->
+    <div class="col-lg-4 col-lg-4">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Mahasiswa <span>| Accepted</span></h5>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                <div class="ps-3">
+                    <h6>1244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- acc Mahasiswa -->
+    <div class="col-lg-4 col-lg-4">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Mahasiswa <span>| Rejected</span></h5>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                <div class="ps-3">
+                    <h6>1244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Reject Mahasiswa -->
+@endsection

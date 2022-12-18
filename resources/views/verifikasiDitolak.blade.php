@@ -93,24 +93,23 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link" href="/verifikasi">
+        <a class="nav-link collapsed" href="/verifikasi">
           <i class="bi bi-menu-button-wide"></i>
           <span>Verifikasi Bebas Lab</span>
         </a>
       </li><!-- End Register Page Nav -->
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="/verifikasiSetuju">
           <i class="bi bi-menu-button-wide"></i>
           <span>Mahasiswa Terverifikasi</span>
         </a>
       </li><!-- End Register Page Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/verifikasiDitolak">
+        <a class="nav-link " href="/verifikasiDitolak">
           <i class="bi bi-menu-button-wide"></i>
           <span>Mahasiswa Ditolak</span>
         </a>
       </li><!-- End Register Page Nav -->
-
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -139,7 +138,8 @@
         </th>
         <th class="th-sm">Nama
         </th>
-        <th class="th-sm">Status
+        </th>
+        <th class="th-sm">Detail
         </th>
         <th class="th-sm">Verifikasi
         </th>
@@ -150,11 +150,10 @@
       <tr>
         <td>{{$mhs->nim}}</td>
         <td>{{$mhs->nama}}</td>
-        <td>{{$mhs->status}}</td>
+        <td>{{$mhs->detail}}</td>
         <td>
           <a href="/verifikasi/{{$mhs->id_mhs}}/cek" class="btn bg-info">verifikasi</a>
         </td>
-        
       </tr>
       @endforeach
     <tfoot>
@@ -163,7 +162,7 @@
         </th>
         <th class="th-sm">Nama
         </th>
-        <th class="th-sm">Status
+        <th class="th-sm">Detail
         </th>
         <th class="th-sm">Verifikasi
         </th>
